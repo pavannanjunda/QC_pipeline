@@ -33,7 +33,7 @@ def get_client() -> MongoClient:
 
 
 def get_collection() -> Collection:
-    return get_client()[config.MONGO_DB_NAME]["sessions"]
+    return get_client()[config.MONGO_DB_NAME][config.MONGO_COLLECTION_NAME]
 
 
 # ─── Fetch ────────────────────────────────────────────────────────────────────
@@ -47,10 +47,9 @@ def iter_pending_sessions(batch_size: int = 0) -> Iterator[dict]:
     col = get_collection()
     
     # Core query for pending QC
-    # We allow 0/0.0 and we temporarily ignore annotation_status to allow re-testing
     query = {
         "upload_status": "Uploaded",
-        "qc_score": {"$in": [None, float("nan"), 0, 0.0, 0]},
+        "qc_score": {"$in": [None, float("nan"), 0, 0.0]},
     }
     
     # Handle the case where the field is missing entirely

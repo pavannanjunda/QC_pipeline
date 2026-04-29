@@ -12,6 +12,7 @@ load_dotenv()
 # ── MongoDB ───────────────────────────────────────────────────────────────────
 MONGO_URI: str = os.getenv("MONGO_URI", "")
 MONGO_DB_NAME: str = os.getenv("MONGO_DB_NAME", "test")
+MONGO_COLLECTION_NAME: str = os.getenv("MONGO_COLLECTION_NAME", "sessions")
 
 # ── Preprocessing ─────────────────────────────────────────────────────────────
 FRAME_SAMPLE_FPS: int = int(os.getenv("FRAME_SAMPLE_FPS", 2))

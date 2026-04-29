@@ -1,0 +1,13 @@
+[Unit]
+Description=QC Pipeline Duration Analytics API
+After=network.target
+
+[Service]
+User=simpel
+WorkingDirectory=/home/simpel/eval_pipeline
+Environment="PYTHONPATH=/home/simpel/.local/lib/python3.12/site-packages:/home/simpel/eval_pipeline"
+ExecStart=/usr/bin/python3 /home/simpel/eval_pipeline/api.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
